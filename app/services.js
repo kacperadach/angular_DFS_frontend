@@ -1,13 +1,13 @@
-angular.module('PlayerScoresApp', []).factory('playerscoresAPIservice', function($http) {
+angular.module('PlayerScoresApp.services', []).factory('playerscoresAPIservice', function($http) {
 
    	var playerscoresAPI = {};
 
-   	playerscoresAPI.getDrivers = function() {
+   	playerscoresAPI.getPlayers = function() {
    		return $http({
    			method: 'JSONP',
-   			url: '0.0.0.0:8001/QB/'
+   			url: '0.0.0.0:8001/QB/?format=json'
    		});
    	}
    
    return playerscoresAPI;
-   });
+});

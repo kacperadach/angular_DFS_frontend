@@ -1,10 +1,9 @@
-angular.module('PlayerScoresApp.controllers', []).
-	controller('playersController', function($scope, playerscoresAPIservice) {
+angular.module('PlayerScoresApp.controllers', []).controller('playersController', function($scope, playerscoresAPIservice) {
+	
 	$scope.nameFilter = null;
-	$scope.playerList = [];
+	$scope.playersList = [];
 
 	playerscoresAPIservice.getPlayers().success(function (response) {
-		$scope.playerList = 
-	})
-
-})
+		$scope.playersList = response[0];
+	});
+});
