@@ -4,7 +4,12 @@ angular.module('PlayerScoresApp.controllers', []).
 	$scope.nameFilter = null;
 	$scope.playersList = [];
 
-	playerscoresAPIservice.getPlayers().success(function (response) {
-		$scope.playersList = response;
-	});
+	playerscoresAPIservice.getPlayers().then(
+		function (response) {
+			$scope.playersList = response.data;
+		},
+		function (response) {
+			console.log('Error ' + response.statusText);
+			console.log(response.status);
+		});
 });
