@@ -6,6 +6,13 @@ var myModule = angular.module('PlayerScoresApp', [
   'PlayerScoresApp.controllers',
 ]);
 
+myModule.filter('startFrom', function() {
+	return function(input, start) {
+		start = +start;
+		return input.slice(start);
+	}
+})
+
 myModule
   .config(function($httpProvider){
     delete $httpProvider.defaults.headers.common['X-Requested-With'];

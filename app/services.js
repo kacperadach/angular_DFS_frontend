@@ -6,7 +6,7 @@ angular.module('PlayerScoresApp.services', []).
    	playerscoresAPI.getPlayers = function() {
    		return $http({
    			method: 'GET',
-   			url: 'http://0.0.0.0:8001/QB/?format=json'
+   			url: 'http://0.0.0.0:8001/players/?format=json'
    		});
    	}
    

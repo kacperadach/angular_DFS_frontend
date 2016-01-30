@@ -7,17 +7,30 @@
   <script src="controller.js"></script>
   <script src="services.js"></script>
 </head>
-<body ng-app="PlayerScoresApp" ng-controller="playersController">
+<body>
+<div ng-app="PlayerScoresApp" ng-controller="playersController">
   <table>
     <thread>
       <tr><th colspan="2">Player Table</th></tr>
     </thread>
     <tbody>
-      <tr ng-repeat="player in playersList">
-        <td> {{ $index + 1 }}</td>
+    <tr>
+      <th>Player</th>
+      <th>Position</th>
+      <th>Team</th>
+      <th>Total Points</th>
+    </tr>
+      <tr ng-repeat="player in playersList | startFrom:currentPage*pageSize | limitTo:pageSize">
         <td> {{ player.name }} </td>
+        <td> {{ player.position }} </td>
+        <td> {{ player.team }} </td>
+        <td> {{ player.total_points }} </td>
       </tr>
     </tbody>
   </table>
+  <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button>
+    {{ currentPage+1 }}/{{ numberOfPages() }}
+    <button ng-disabled="currentPage >= playersList.length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button>
+</div>
 </body>
 </html>
