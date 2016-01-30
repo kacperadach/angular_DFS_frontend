@@ -9,9 +9,10 @@
 </head>
 <body>
 <div ng-app="PlayerScoresApp" ng-controller="playersController">
+  <input type="text" ng-model="nameFilter" placeholder="Find a player..."/>
   <table>
     <thread>
-      <tr><th colspan="2">Player Table</th></tr>
+      <tr><th colspan="4">Player Table</th></tr>
     </thread>
     <tbody>
     <tr>
@@ -20,7 +21,7 @@
       <th>Team</th>
       <th>Total Points</th>
     </tr>
-      <tr ng-repeat="player in playersList | startFrom:currentPage*pageSize | limitTo:pageSize">
+      <tr ng-repeat="player in playersList | startFrom:currentPage*pageSize | limitTo:pageSize| filter:searchFilter">
         <td> {{ player.name }} </td>
         <td> {{ player.position }} </td>
         <td> {{ player.team }} </td>
