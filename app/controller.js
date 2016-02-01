@@ -26,7 +26,7 @@ angular.module('PlayerScoresApp.controllers', []).
 
 
 	$scope.numberOfPages = function ()  {
-		return Math.ceil($scope.playersList.length/$scope.pageSize);
+		return Math.ceil($scope.filterList.length/$scope.pageSize);
 	};
 
 	playerscoresAPIservice.getPlayers().then(
