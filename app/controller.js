@@ -1,5 +1,5 @@
 angular.module('PlayerScoresApp.controllers', []).
-	controller('playersController', function($scope, playerscoresAPIservice) {
+	controller('playersController', function($scope, $log, playerscoresAPIservice) {
 	
 	$scope.nameFilter = null;
 	$scope.currentPage = 0;
@@ -24,7 +24,6 @@ angular.module('PlayerScoresApp.controllers', []).
 		}
 	})
 
-
 	$scope.numberOfPages = function ()  {
 		return Math.ceil($scope.filterList.length/$scope.pageSize);
 	};
@@ -35,6 +34,6 @@ angular.module('PlayerScoresApp.controllers', []).
 			$scope.filterList = response.data;
 		},
 		function (response) {
-			console.log('Error ' + response.statusText);
+			$log.error(response.statusText);
 		});
 });
