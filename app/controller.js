@@ -6,6 +6,13 @@ angular.module('PlayerScoresApp.controllers', []).
 	$scope.pageSize = 32;
 	$scope.playersList = [];
 	$scope.filterList = [];
+	$scope.currentPlayer = null;
+	$scope.weekPerformances = [];
+
+	$scope.getGameData = function (player) {
+		$scope.currentPlayer = player;
+		$scope.weekPerformances = player.WeekPerformances;
+	}
 
 	$scope.$watch('nameFilter', function (term) {
 		if(term == null || term == "") {
