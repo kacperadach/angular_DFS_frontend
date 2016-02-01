@@ -5,11 +5,25 @@ angular.module('PlayerScoresApp.controllers', []).
 	$scope.currentPage = 0;
 	$scope.pageSize = 32;
 	$scope.playersList = [];
+	$scope.filterList = [];
 
-	$scope.searchFilter = function (player) {
-		var keyword = new RegExp($scope.nameFilter, 'i');
-		return !$scope.nameFilter || keyword.test(player.name); 
-	};
+	$scope.$watch('nameFilter', function (term) {
+		if(term == null || term == "") {
+			$scope.filterList = $scope.playersList;
+		}
+		else {
+			var keyword = new RegExp(term, 'i');
+			var tempList = [];
+			for(var i = 0; i < $scope.playersList.length; i++) {
+				console.log($scope.playersList[i].name);
+				if (keyword.test($scope.playersList[i].name)) {
+					tempList.push($scope.playersList[i]);
+				}
+			} 
+			$scope.filterList = tempList;
+		}
+	})
+
 
 	$scope.numberOfPages = function ()  {
 		return Math.ceil($scope.playersList.length/$scope.pageSize);
@@ -18,6 +32,7 @@ angular.module('PlayerScoresApp.controllers', []).
 	playerscoresAPIservice.getPlayers().then(
 		function (response) {
 			$scope.playersList = response.data;
+			$scope.filterList = response.data;
 		},
 		function (response) {
 			console.log('Error ' + response.statusText);

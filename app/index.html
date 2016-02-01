@@ -21,7 +21,7 @@
       <th>Team</th>
       <th>Total Points</th>
     </tr>
-      <tr ng-repeat="player in playersList | startFrom:currentPage*pageSize | limitTo:pageSize| filter:searchFilter">
+      <tr ng-repeat="player in filterList | startFrom:currentPage*pageSize | limitTo:pageSize">
         <td> {{ player.name }} </td>
         <td> {{ player.position }} </td>
         <td> {{ player.team }} </td>
