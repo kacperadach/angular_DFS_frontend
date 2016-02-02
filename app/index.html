@@ -29,6 +29,10 @@
         <td> {{ player.team }} </td>
         <td> {{ player.total_points }} </td>
       </tr>
+      <tr>
+        <td ng-show="pageSize == 32" ng-click="showMore()">Show more...</td>
+        <td ng-show="pageSize > 32" ng-click="showLess()">Show less...</td>
+      </tr>
     </tbody>
   </table>
   <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button>

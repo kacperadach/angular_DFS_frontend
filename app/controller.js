@@ -14,6 +14,13 @@ angular.module('PlayerScoresApp.controllers', []).
 		$scope.weekPerformances = player.WeekPerformances;
 	}
 
+	$scope.showMore = function () {
+		$scope.pageSize += 32;
+	}
+	$scope.showLess = function () {
+		$scope.pageSize -= 32;
+	}
+
 	$scope.$watch('nameFilter', function (term) {
 		if(term == null || term == "") {
 			$scope.filterList = $scope.playersList;
