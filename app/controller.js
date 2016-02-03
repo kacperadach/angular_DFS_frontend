@@ -1,5 +1,6 @@
-angular.module('PlayerScoresApp.controllers', []).
-	controller('playersController', function($scope, $log, playerscoresAPIservice) {
+var app = angular.module('PlayerScoresApp.controllers', []);
+
+app.controller('playersController', function($scope, $log, playerscoresAPIservice) {
 	
 	$scope.nameFilter = null;
 	$scope.currentPage = 0;
@@ -21,6 +22,18 @@ angular.module('PlayerScoresApp.controllers', []).
 		$scope.pageSize -= 32;
 	}
 
+	$scope.sortPos = function (pos) {
+		console.log('test');
+		var keyword = new RegExp(pos, 'i');
+			var tempList = [];
+			for(var i = 0; i < $scope.playersList.length; i++) {
+				if (keyword.test($scope.playersList[i].position)) {
+					tempList.push($scope.playersList[i]);
+				}
+			} 
+			$scope.filterList = tempList;
+	}
+
 	$scope.$watch('nameFilter', function (term) {
 		if(term == null || term == "") {
 			$scope.filterList = $scope.playersList;
@@ -29,7 +42,6 @@ angular.module('PlayerScoresApp.controllers', []).
 			var keyword = new RegExp(term, 'i');
 			var tempList = [];
 			for(var i = 0; i < $scope.playersList.length; i++) {
-				console.log($scope.playersList[i].name);
 				if (keyword.test($scope.playersList[i].name)) {
 					tempList.push($scope.playersList[i]);
 				}
@@ -42,7 +54,7 @@ angular.module('PlayerScoresApp.controllers', []).
 		return Math.ceil($scope.filterList.length/$scope.pageSize);
 	};
 
-	playerscoresAPIservice.getPlayers().then(
+	playerscoresAPIservice.getallPlayers().then(
 		function (response) {
 			$scope.playersList = response.data;
 			$scope.filterList = response.data;

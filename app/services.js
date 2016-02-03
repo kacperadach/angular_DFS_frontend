@@ -3,7 +3,7 @@ angular.module('PlayerScoresApp.services', []).
 
    	var playerscoresAPI = {};
 
-   	playerscoresAPI.getPlayers = function() {
+   	playerscoresAPI.getallPlayers = function() {
    		return $http({
    			method: 'GET',
    			url: 'http://0.0.0.0:8001/players/?format=json'

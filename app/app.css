@@ -28,3 +28,20 @@
   content: "";
   padding: 0;
 }
+
+.data-table {
+  font-family: verdana,arial,sans-serif;
+}
+
+.data-table td {
+  text-align: center;
+  min-width: 25px;
+}
+
+.data-table tr {
+  border: 1px solid #CCC;
+}
+
+.left-align {
+  text-align: left;
+}
