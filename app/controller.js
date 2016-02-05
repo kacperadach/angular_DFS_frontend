@@ -9,6 +9,7 @@ app.controller('playersController', function($scope, $log, playerscoresAPIservic
 	$scope.filterList = [];
 	$scope.currentPlayer = null;
 	$scope.weekPerformances = [];
+	$scope.curPosition = "all";
 
 	$scope.getGameData = function (player) {
 		$scope.currentPlayer = player;
@@ -24,7 +25,13 @@ app.controller('playersController', function($scope, $log, playerscoresAPIservic
 
 	$scope.sortPos = function (pos) {
 		console.log('test');
-		var keyword = new RegExp(pos, 'i');
+		if($scope.curPosition == pos) {
+			$scope.curPosition = "all";
+			$scope.filterList = $scope.playersList;
+		}
+		else {
+			$scope.curPosition = pos;
+			var keyword = new RegExp(pos, 'i');
 			var tempList = [];
 			for(var i = 0; i < $scope.playersList.length; i++) {
 				if (keyword.test($scope.playersList[i].position)) {
@@ -32,6 +39,7 @@ app.controller('playersController', function($scope, $log, playerscoresAPIservic
 				}
 			} 
 			$scope.filterList = tempList;
+		}
 	}
 
 	$scope.$watch('nameFilter', function (term) {
