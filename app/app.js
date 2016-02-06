@@ -1,19 +1,19 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-var myModule = angular.module('PlayerScoresApp', [
+var playerModule = angular.module('PlayerScoresApp', [
   'PlayerScoresApp.services',
-  'PlayerScoresApp.controllers',
+  'PlayerScoresApp.controllers'
 ]);
 
-myModule.filter('startFrom', function() {
+playerModule.filter('startFrom', function() {
 	return function(input, start) {
 		start = +start;
 		return input.slice(start);
 	}
 })
 
-myModule
+playerModule
   .config(function($httpProvider){
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });
