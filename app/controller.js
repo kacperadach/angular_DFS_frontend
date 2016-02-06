@@ -14,6 +14,11 @@ app.controller('playersController', function($scope, $log, playerscoresAPIservic
 	$scope.getGameData = function (player) {
 		$scope.currentPlayer = player;
 		$scope.weekPerformances = player.WeekPerformances;
+		$scope.labels = [for (x of $scope.weekPerformances) x.week];
+  		$scope.series = [$scope.currentPlayer.name];
+  		$scope.data = [
+    		[for (x of $scope.weekPerformances) x.points]
+  		];
 	}
 
 	$scope.showMore = function () {
@@ -69,17 +74,7 @@ app.controller('playersController', function($scope, $log, playerscoresAPIservic
 		function (response) {
 			$log.error(response.statusText);
 		});
+
+
 });
 
-app.controller('LineCtrl', function($scope) {
-
-  $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
-  $scope.series = ['Series A', 'Series B'];
-  $scope.data = [
-    [65, 59, 80, 81, 56, 55, 40],
-    [28, 48, 40, 19, 86, 27, 90]
-  ];
-  $scope.onClick = function (points, evt) {
-    console.log(points, evt);
-  };
-});

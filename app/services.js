@@ -1,5 +1,6 @@
-angular.module('PlayerScoresApp.services', []).
-	factory('playerscoresAPIservice', function($http) {
+var app = angular.module('PlayerScoresApp.services', []);
+
+app.factory('playerscoresAPIservice', function($http) {
 
    	var playerscoresAPI = {};
 

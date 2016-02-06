@@ -55,6 +55,7 @@
     {{ currentPage+1 }}/{{ numberOfPages() }}
     <button ng-disabled="currentPage >= filterList.length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button>
   </div>
+  <div>
   <div style="display: inline-block;">
     <table class="data-table" ng-show="currentPlayer">
       <thread>
@@ -73,13 +74,14 @@
       </tbody>
     </table>
   </div>
+  <div style="display: inline-block">
+    <canvas width="200" ng-show="currentPlayer" id="line" class="chart chart-line" chart-data="data"
+    chart-labels="labels" chart-series="series">
+    </canvas>
+  </div>
+  </div>
 </div>
-<div ng-controller="LineCtrl">
-  <canvas id="line" class="chart chart-line" chart-data="data"
-  chart-labels="labels" chart-legend="true" chart-series="series"
-  chart-click="onClick" >
-  </canvas>
-</div>
+
 
 </body>
 </html>
