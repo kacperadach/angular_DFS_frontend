@@ -46,6 +46,7 @@
         <td> {{ player.total_points }} </td>
         <td> {{ player.WeekPerformances[player.WeekPerformances.length - 1].points }} </td>
         <td> {{ player.salary == 0 ? "N/A" : "$" + player.salary }} </td>
+        <td> <button ng-disabled="1 == 0" ng-click="addPlayer(player)">+</button></td>
       </tr>
       <tr>
         <td ng-show="pageSize == 32" ng-click="showMore()">Show more...</td>
@@ -79,7 +80,74 @@
     </canvas>
   </div>
 </div>
+<div ng-controller="lineupController">
+  <table class="data-table">
+    <thread>Lineup</thread>
+    <thead>
+      <tr>
+        <td>Position</td>
+        <td>Player</td>
+        <td>Salary</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>QB</td>
+        <td> {{ qblist[0].name }}</td>
+        <td> {{ qblist[0].salary }}</td>
+        <td><button ng-click="removeFromLineup(qblist[0], false)" ng-show="qblist.length != 0">-</button></td>
+      </tr>
+      <tr>
+        <td>RB</td>
+        <td> {{ rblist[0].name }}</td>
+        <td> {{ rblist[0].salary }}</td>
+        <td><button ng-click="removeFromLineup(rblist[0], false)" ng-show="rblist.length != 0">-</button></td>
+      </tr>
+      <tr>
+        <td>RB</td>
+        <td> {{ rblist[1].name }}</td>
+        <td> {{ rblist[1].salary }}</td>
+        <td><button ng-click="removeFromLineup(rblist[1], false)" ng-show="rblist.length > 1">-</button></td>
+      </tr>
+      <tr>
+        <td>WR</td>
+        <td> {{ wrlist[0].name }}</td>
+        <td> {{ wrlist[0].salary }}</td>
+        <td><button ng-click="removeFromLineup(wrlist[0], false)" ng-show="wrlist.length != 0">-</button></td>
+      </tr>
+      <tr>
+        <td>WR</td>
+        <td> {{ wrlist[1].name }}</td>
+        <td> {{ wrlist[1].salary }}</td>
+        <td><button ng-click="removeFromLineup(wrlist[1], false)" ng-show="wrlist.length > 1">-</button></td>
+      </tr>
+      <tr>
+        <td>WR</td>
+        <td> {{ wrlist[2].name }}</td>
+        <td> {{ wrlist[2].salary }}</td>
+        <td><button ng-click="removeFromLineup(wrlist[2], false)" ng-show="wrlist.length > 2">-</button></td>
+      </tr>
+      <tr>
+        <td>TE</td>
+        <td> {{ telist[0].name }}</td>
+        <td> {{ telist[0].salary }}</td>
+        <td><button ng-click="removeFromLineup(telist[0], false)" ng-show="telist.length != 0">-</button></td>
+      </tr>
+      <tr>
+        <td>DEF</td>
+        <td> {{ deflist[0].name }}</td>
+        <td> {{ deflist[0].salary }}</td>
+        <td><button ng-click="removeFromLineup(deflist[0], false)" ng-show="deflist.length != 0">-</button></td>
+      </tr>
+      <tr>
+        <td>FLEX</td>
+        <td> {{ flexlist[0].name }}</td>
+        <td> {{ flexlist[0].salary }}</td>
+        <td><button ng-click="removeFromLineup(flexlist[0], true)" ng-show="flexlist.length != 0">-</button></td>
+      </tr>
+    </tbody>
 
-
+  </table>
+</div>
 </body>
 </html>
