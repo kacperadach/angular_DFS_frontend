@@ -37,6 +37,7 @@
       <th>Team</th>
       <th>Total Points</th>
       <th>Last Week</th>
+      <th>Salary</th>
     </tr>
       <tr ng-repeat="player in filterList | startFrom:currentPage*pageSize | limitTo:pageSize" ng-click="getGameData(player)">
         <td> {{ player.name }} </td>
@@ -44,6 +45,7 @@
         <td> {{ player.team }} </td>
         <td> {{ player.total_points }} </td>
         <td> {{ player.WeekPerformances[player.WeekPerformances.length - 1].points }} </td>
+        <td> {{ player.salary == 0 ? "N/A" : "$" + player.salary }} </td>
       </tr>
       <tr>
         <td ng-show="pageSize == 32" ng-click="showMore()">Show more...</td>
@@ -55,12 +57,11 @@
     {{ currentPage+1 }}/{{ numberOfPages() }}
     <button ng-disabled="currentPage >= filterList.length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button>
   </div>
-  <div>
-  <div style="display: inline-block;">
+  <div style="display: inline-block; width: 600px; height: 200px">
     <table class="data-table" ng-show="currentPlayer">
       <thread>
-        <tr><th class="left-align"> {{ currentPlayer.name }}</th></tr>
-        <tr><th class="left-align"> {{ currentPlayer.team }} - {{ currentPlayer.position }} </th></tr>
+        <tr><th colspan="19" class="left-align"> {{ currentPlayer.name }}</th></tr>
+        <tr><th colspan="19" class="left-align"> {{ currentPlayer.team }} - {{ currentPlayer.position }} - {{ currentPlayer.salary == 0 ? "N/A" : "$" + currentPlayer.salary }}</th></tr>
       </thread>
       <tbody>
         <tr>
@@ -73,12 +74,9 @@
         </tr>
       </tbody>
     </table>
-  </div>
-  <div style="display: inline-block">
-    <canvas width="200" ng-show="currentPlayer" id="line" class="chart chart-line" chart-data="data"
+     <canvas ng-show="currentPlayer" id="line" class="chart chart-line" chart-data="data"
     chart-labels="labels" chart-series="series">
     </canvas>
-  </div>
   </div>
 </div>
 
