@@ -12,17 +12,17 @@
   <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
 </head>
 <body ng-app="PlayerScoresApp">
-<div> Draft Kings Player Scores Data </div>
+<div class="title"> Draft Kings Player Scores Data </div>
 <div ng-controller="playersController">
-<div style="float: left;">
+<div class="table-div">
   <table class="data-table">
-    <tr>
-      <td><button ng-click="sortPos('QB')">QB</button></td>
-      <td><button ng-disabled="1 == 0" ng-click="sortPos('RB')">RB</button></td>
-      <td><button ng-click="sortPos('WR')">WR</button></td>
-      <td><button ng-click="sortPos('TE')">TE</button></td>
-      <td><button ng-click="sortPos('DEF')">DEF</button></td>
-    </tr>
+    <thread class="button-thread">
+      <button ng-click="sortPos('QB')">QB</button>
+      <button ng-disabled="1 == 0" ng-click="sortPos('RB')">RB</button>
+      <button ng-click="sortPos('WR')">WR</button>
+      <button ng-click="sortPos('TE')">TE</button>
+      <button ng-click="sortPos('DEF')">DEF</button>
+    </thread>
     <tr>
       <th colspan="5">
       <thread> Player Table

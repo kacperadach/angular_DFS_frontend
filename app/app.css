@@ -29,17 +29,50 @@
   padding: 0;
 }
 
+.title {
+  width: 100%;
+  padding: 10px;
+  display: inline-block;
+  text-align: center;
+  font-size: 40px;
+  border-bottom: medium solid rgb(169, 169, 169);
+  border-color: rgb(169, 169, 169);
+
+}
+
+.table-div {
+  float: left;
+  padding-right: 5%;
+  padding-left: 10%;
+}
+
 .data-table {
   font-family: verdana,arial,sans-serif;
 }
 
 .data-table td {
   text-align: center;
-  min-width: 25px;
+  min-width: 35px;
 }
 
-.data-table tr {
+/*.data-table tr {
   border: 1px solid #CCC;
+}*/
+
+.button-thread button {
+  font-size: 120%;
+  width: 19%;
+  height: 50px;
+  padding: 10px;
+  border: hidden;
+  background: none;
+}
+
+.button-thread button:hover {
+  border-bottom: medium solid rgb(169, 169, 169);
+  border-color: rgb(169, 169, 169);
+  border-width: 0.5px;
+
 }
 
 .left-align {

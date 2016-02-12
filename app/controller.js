@@ -167,8 +167,6 @@ app.controller('lineupController', function($scope, $rootScope, $log, playerscor
 		}
 	}
 
-	//function removeFromFlex()
-
 	function containsObject(obj, list) {
 	    var i;
 	    for (i = 0; i < list.length; i++) {
