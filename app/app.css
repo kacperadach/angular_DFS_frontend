@@ -29,6 +29,10 @@
   padding: 0;
 }
 
+.main-body {
+  background-color: #A9A9A9;
+}
+
 .title {
   width: 100%;
   padding: 10px;
@@ -37,44 +41,84 @@
   font-size: 40px;
   border-bottom: medium solid rgb(169, 169, 169);
   border-color: rgb(169, 169, 169);
+  background-color: #323133;
+  color: white;
+}
 
+.search-bar {
+  float: right;
 }
 
 .table-div {
   float: left;
-  padding-right: 5%;
-  padding-left: 10%;
+  padding-right: 3%;
+  padding-left: 15%;
+  padding-top: 1%;
+}
+
+.headers {
+  width: 10px;
 }
 
 .data-table {
   font-family: verdana,arial,sans-serif;
+  text-align: left;
+  table-layout: fixed;
 }
 
 .data-table td {
-  text-align: center;
-  min-width: 35px;
+  text-align: left;
+  width: 60px;
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
 }
 
-/*.data-table tr {
-  border: 1px solid #CCC;
-}*/
+.data-table tr {
+  height: 25px;
+}
+
+#player-column {
+  width: 140px;
+}
+
+.current-div {
+  display: inline-block; 
+  width: 600px; 
+  height: 200px;
+  position: absolute;
+  top: 80%;
+  border: solid;
+  text-align: left;
+
+}
+
+.lineup-div {
+  border: solid;
+  float: left;
+  margin-top: 5%;
+}
+
+.lineup-table {
+  font-family: verdana,arial,sans-serif;
+}
+
+.lineup-table tr {
+  height: 25px;
+}
 
 .button-thread button {
   font-size: 120%;
   width: 19%;
   height: 50px;
-  padding: 10px;
-  border: hidden;
   background: none;
+  border-bottom: medium solid rgb(169, 169, 169);
 }
 
 .button-thread button:hover {
-  border-bottom: medium solid rgb(169, 169, 169);
-  border-color: rgb(169, 169, 169);
-  border-width: 0.5px;
-
+  
 }
 
-.left-align {
-  text-align: left;
+#input {
+  width: 100%;
 }

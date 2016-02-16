@@ -5,13 +5,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
   <script src="https://rawgit.com/nnnick/Chart.js/master/Chart.min.js"></script>
   <script src="https://rawgit.com/jtblin/angular-chart.js/master/dist/angular-chart.min.js"></script>
+  <script src="https://rawgit.com/jtblin/angular-chart.js/master/dist/angular-chart.css"></script>
   <script src="app.js"></script>
   <script src="controller.js"></script>
   <script src="services.js"></script>
   <link rel="stylesheet" href="app.css">
-  <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
 </head>
-<body ng-app="PlayerScoresApp">
+<body class="main-body" ng-app="PlayerScoresApp">
 <div class="title"> Draft Kings Player Scores Data </div>
 <div ng-controller="playersController">
 <div class="table-div">
@@ -24,23 +24,23 @@
       <button ng-click="sortPos('DEF')">DEF</button>
     </thread>
     <tr>
-      <th colspan="5">
-      <thread> Player Table
-        <input style="float: right" type="text" ng-model="nameFilter" placeholder="Find a player..."/>
+      <th id="input" colspan="10">
+      <thread>
+        <input class="search-bar" type="text" ng-model="nameFilter" placeholder="Find a player..."/>
       </thread>
       </th>
     </tr>
     <tbody>
-    <tr>
-      <th>Player</th>
-      <th>Position</th>
-      <th>Team</th>
-      <th>Total Points</th>
-      <th>Last Week</th>
-      <th>Salary</th>
+    <tr id="header-row">
+      <td id="player-column">Player</td>
+      <td>Position</td>
+      <td>Team</td>
+      <td>Total</td>
+      <td>Last</td>
+      <td>Salary</td>
     </tr>
       <tr ng-repeat="player in filterList | startFrom:currentPage*pageSize | limitTo:pageSize" ng-click="getGameData(player)">
-        <td> {{ player.name }} </td>
+        <td id="player-column"> {{ player.name }} </td>
         <td> {{ player.position }} </td>
         <td> {{ player.team }} </td>
         <td> {{ player.total_points }} </td>
@@ -49,8 +49,8 @@
         <td> <button ng-disabled="1 == 0" ng-click="addPlayer(player)">+</button></td>
       </tr>
       <tr>
-        <td ng-show="pageSize == 32" ng-click="showMore()">Show more...</td>
-        <td ng-show="pageSize > 32" ng-click="showLess()">Show less...</td>
+        <td id="player-column" ng-show="pageSize == 20" ng-click="showMore()">Show more...</td>
+        <td ng-show="pageSize > 20" ng-click="showLess()">Show less...</td>
       </tr>
     </tbody>
   </table>
@@ -58,19 +58,19 @@
     {{ currentPage+1 }}/{{ numberOfPages() }}
     <button ng-disabled="currentPage >= filterList.length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button>
   </div>
-  <div style="display: inline-block; width: 600px; height: 200px">
-    <table class="data-table" ng-show="currentPlayer">
+  <div class="current-div">
+    <table ng-show="currentPlayer">
       <thread>
         <tr><th colspan="19" class="left-align"> {{ currentPlayer.name }}</th></tr>
         <tr><th colspan="19" class="left-align"> {{ currentPlayer.team }} - {{ currentPlayer.position }} - {{ currentPlayer.salary == 0 ? "N/A" : "$" + currentPlayer.salary }}</th></tr>
       </thread>
       <tbody>
         <tr>
-          <th class="left-align">Week</th>
+          <th>Week</th>
           <td ng-repeat="performance in weekPerformances"> {{ performance.week }} </td>
         </tr>
         <tr>
-          <th class="left-align">Points</th>
+          <th>Points</th>
           <td ng-repeat="performance in weekPerformances"> {{ performance.points }} </td>
         </tr>
       </tbody>
@@ -80,14 +80,13 @@
     </canvas>
   </div>
 </div>
-<div ng-controller="lineupController">
-  <table class="data-table">
-    <thread>Lineup</thread>
+<div class="lineup-div" ng-controller="lineupController">
+  <table class="lineup-table">
     <thead>
       <tr>
-        <td>Position</td>
-        <td>Player</td>
-        <td>Salary</td>
+        <th>Position</th>
+        <th>Player</th>
+        <th>Salary</th>
       </tr>
     </thead>
     <tbody>

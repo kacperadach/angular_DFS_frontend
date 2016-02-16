@@ -4,7 +4,7 @@ app.controller('playersController', function($scope, $rootScope, $log, playersco
 	
 	$scope.nameFilter = null;
 	$scope.currentPage = 0;
-	$scope.pageSize = 32;
+	$scope.pageSize = 20;
 	$scope.playersList = [];
 	$scope.filterList = [];
 	$scope.currentPlayer = null;
@@ -26,10 +26,10 @@ app.controller('playersController', function($scope, $rootScope, $log, playersco
 	}
 
 	$scope.showMore = function () {
-		$scope.pageSize += 32;
+		$scope.pageSize += 10;
 	}
 	$scope.showLess = function () {
-		$scope.pageSize -= 32;
+		$scope.pageSize -= 10;
 	}
 
 	$scope.sortPos = function (pos) {
