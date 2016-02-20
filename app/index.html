@@ -39,7 +39,7 @@
       <td>Last</td>
       <td>OPP</td>
       <td>Salary</td>
-      <td>Add</td>
+      <td></td>
     </tr>
       <tr ng-repeat="player in filterList | startFrom:currentPage*pageSize | limitTo:pageSize" ng-click="getGameData(player)">
         <td id="player-column"> {{ player.name }} </td>
@@ -66,18 +66,16 @@
    </div>
   </div>
   <div class="current-div">
-    <table ng-show="currentPlayer">
-      <thread>
-        <tr><th colspan="19" class="left-align"> {{ currentPlayer.name }}</th></tr>
-        <tr><th colspan="19" class="left-align"> {{ currentPlayer.team }} - {{ currentPlayer.position }} - {{ currentPlayer.salary == 0 ? "N/A" : "$" + currentPlayer.salary }}</th></tr>
-      </thread>
+    <table ng-show="currentPlayer" class="current-table">
       <tbody>
-        <tr>
-          <th>Week</th>
+          <tr><th colspan="19" class="current-header"> {{ currentPlayer.name }}</th></tr>
+          <tr ><th colspan="19" class="current-header"> {{ currentPlayer.team }} - {{ currentPlayer.position }} - {{ currentPlayer.salary == 0 ? "N/A" : "$" + currentPlayer.salary }}</th></tr>
+        <tr class="current-data">
+          <td id="header-row">Week</td>
           <td ng-repeat="performance in weekPerformances"> {{ performance.week }} </td>
         </tr>
-        <tr>
-          <th>Points</th>
+        <tr class="current-data">
+          <td id="header-row">Points</td>
           <td ng-repeat="performance in weekPerformances"> {{ performance.points }} </td>
         </tr>
       </tbody>
@@ -90,7 +88,11 @@
 <div class="lineup-div" ng-controller="lineupController">
   <table class="lineup-table">
     <thead>
-      <div id="lineup-header">Lineup
+      <div id="lineup-header">Lineup 
+        <div class="salary-holder">
+          <div class="salary">Remaining Salary: {{remainingSalary}}</div>
+          <div class="salary">Average Per Player: {{displaySalaryPerPlayer}}</div>
+        </div>
       </div>
       <tr id="header-row">
         <td>Position</td>
@@ -98,7 +100,7 @@
         <td>OPP</td>
         <td>FPPG</td>
         <td>Salary</td>
-        <td>remove</td>
+        <td></td>
       </tr>
     </thead>
     <tbody>

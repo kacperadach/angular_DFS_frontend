@@ -91,43 +91,93 @@ app.controller('lineupController', function($scope, $rootScope, $log, playerscor
 	$scope.telist = [];
 	$scope.deflist = [];
 	$scope.flexlist = [];
+	$scope.totalPlayers = 0;
+	$scope.remainingSalary = 50000;
+	$scope.salaryPerPlayer = 5555;
+	$scope.displaySalaryPerPlayer = 5555;
 
 	$scope.$on('add', function (event, args) {
 		var player = args.player;
 		addToLineup(player);
 	});
 
+	function adjustSalaryNumbers(player, add) {
+		if (add) {
+			if (!playerInLineup(player)) {
+				$scope.totalPlayers += 1;
+				$scope.remainingSalary -= player.salary;
+				if ($scope.totalPlayers == 9) {
+					$scope.salaryPerPlayer = 0;
+				}
+				else {
+					$scope.salaryPerPlayer = $scope.remainingSalary / (9 - $scope.totalPlayers);
+				}
+				$scope.displaySalaryPerPlayer = Math.floor($scope.salaryPerPlayer);
+			}
+		}
+		else {
+			$scope.totalPlayers -= 1;
+			$scope.remainingSalary += player.salary;
+			if ($scope.totalPlayers == 9) {
+					$scope.salaryPerPlayer = 0;
+				}
+				else {
+					$scope.salaryPerPlayer = $scope.remainingSalary / (9 - $scope.totalPlayers);
+				}
+			$scope.displaySalaryPerPlayer = Math.floor($scope.salaryPerPlayer);
+		}
+	}
+
+	function playerInLineup(player) {
+		return containsObject(player, $scope.qblist) ||
+			containsObject(player, $scope.rblist) ||
+			containsObject(player, $scope.wrlist) ||
+			containsObject(player, $scope.telist) ||
+			containsObject(player, $scope.deflist) ||
+			containsObject(player, $scope.flexlist);
+
+	}
+
 	function addToLineup(player) {
 		if(player.position == "QB") {
 			if($scope.qblist.length == 0) {
+				adjustSalaryNumbers(player, true);
 				$scope.qblist.push(player);
 			}
 		} else if(player.position == "RB") {
 			if($scope.rblist.length <= 1 && !containsObject(player, $scope.rblist)) {
+				adjustSalaryNumbers(player, true);
 				$scope.rblist.push(player);
 			} else if($scope.flexlist.length == 0 && !containsObject(player, $scope.rblist)) {
+				adjustSalaryNumbers(player, true);
 				$scope.flexlist.push(player);
 			}
 		} else if(player.position == "WR") {
 			if($scope.wrlist.length <= 2 && !containsObject(player, $scope.wrlist)) {
+				adjustSalaryNumbers(player, true);
 				$scope.wrlist.push(player);
 			} else if($scope.flexlist.length == 0 && !containsObject(player, $scope.wrlist)) {
+				adjustSalaryNumbers(player, true);
 				$scope.flexlist.push(player);
 			}
 		} else if(player.position == "TE") {
 			if($scope.telist.length == 0) {
+				adjustSalaryNumbers(player, true);
 				$scope.telist.push(player);
 			} else if($scope.flexlist.length == 0 && !containsObject(player, $scope.telist)) {
+				adjustSalaryNumbers(player, true);
 				$scope.flexlist.push(player);
 			}
 		} else if(player.position == "DEF") {
 			if($scope.deflist.length == 0) {
+				adjustSalaryNumbers(player, true);
 				$scope.deflist.push(player);
 			} 
 		}
 	}
 
 	$scope.removeFromLineup = function (player, flex) {
+		adjustSalaryNumbers(player, false);
 		if(flex == true) {
 			$scope.flexlist = [];
 		} else {
