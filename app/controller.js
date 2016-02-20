@@ -4,7 +4,7 @@ app.controller('playersController', function($scope, $rootScope, $log, playersco
 	
 	$scope.nameFilter = null;
 	$scope.currentPage = 0;
-	$scope.pageSize = 20;
+	$scope.pageSize = 18;
 	$scope.playersList = [];
 	$scope.filterList = [];
 	$scope.currentPlayer = null;

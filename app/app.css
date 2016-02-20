@@ -30,7 +30,7 @@
 }
 
 .main-body {
-  background-color: #A9A9A9;
+  background-color: #383739;
 }
 
 .title {
@@ -41,12 +41,11 @@
   font-size: 40px;
   border-bottom: medium solid rgb(169, 169, 169);
   border-color: rgb(169, 169, 169);
-  background-color: #323133;
+  background-color: #1D1C1E;
   color: white;
 }
 
 .search-bar {
-  float: right;
 }
 
 .table-div {
@@ -64,6 +63,8 @@
   font-family: verdana,arial,sans-serif;
   text-align: left;
   table-layout: fixed;
+  background-color: #ffffcc;
+  border-collapse: collapse;
 }
 
 .data-table td {
@@ -72,14 +73,22 @@
   overflow: hidden;
   display: inline-block;
   white-space: nowrap;
+  margin: 5px;
 }
+
 
 .data-table tr {
   height: 25px;
+  border: 1px solid #A8A8A8;
 }
 
 #player-column {
   width: 140px;
+}
+
+#header-row {
+  background-color: rgb(169, 169, 169);
+  color: #ffffcc;
 }
 
 .current-div {
@@ -87,32 +96,84 @@
   width: 600px; 
   height: 200px;
   position: absolute;
-  top: 80%;
-  border: solid;
+  top: 500px;
   text-align: left;
 
 }
 
-.lineup-div {
-  border: solid;
+.page-scroll-outer {
+  color: #ffffcc;
+}
+
+.page-scroll-inner {
+  width: 40%;
+  margin: 0 auto;
+}
+
+.page-scroll-inner button {
+  background-color: #FFC;
+  height: 50px;
+  width: 100px;
+  border-top: medium solid #A9A9A9;
+  font-size: 110%;
+}
+
+#previous {
   float: left;
-  margin-top: 5%;
+}
+
+#next {
+  float: right;
+}
+
+.page-number {
+  font-size: 130%;
+  float: left;
+  width: 68px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.lineup-div {
+  margin-top: 2%;
 }
 
 .lineup-table {
   font-family: verdana,arial,sans-serif;
+  text-align: left;
+  table-layout: fixed;
+  border-collapse: collapse;
+  background-color: #FFC;
+}
+
+.lineup-table tr:nth-child(even) {
+  background-color: #CCC;
+}
+
+.lineup-table tr:nth-child(odd) {
+  background-color: #FFC;
 }
 
 .lineup-table tr {
   height: 25px;
+  border: 1px solid #A8A8A8;
+}
+
+.lineup-table td {
+  text-align: left;
+  width: 60px;
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
+  margin: 5px;
 }
 
 .button-thread button {
   font-size: 120%;
-  width: 19%;
+  width: 19.34%;
   height: 50px;
-  background: none;
   border-bottom: medium solid rgb(169, 169, 169);
+  background-color: #ffffcc;
 }
 
 .button-thread button:hover {
@@ -121,4 +182,11 @@
 
 #input {
   width: 100%;
+}
+
+#lineup-header {
+  color: #ffffcc;
+  font-weight: bold;
+  margin: 5px;
+  font-size: 140%;
 }

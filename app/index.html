@@ -37,7 +37,9 @@
       <td>Team</td>
       <td>Total</td>
       <td>Last</td>
+      <td>OPP</td>
       <td>Salary</td>
+      <td>Add</td>
     </tr>
       <tr ng-repeat="player in filterList | startFrom:currentPage*pageSize | limitTo:pageSize" ng-click="getGameData(player)">
         <td id="player-column"> {{ player.name }} </td>
@@ -45,18 +47,23 @@
         <td> {{ player.team }} </td>
         <td> {{ player.total_points }} </td>
         <td> {{ player.WeekPerformances[player.WeekPerformances.length - 1].points }} </td>
+        <td> {{ player.opp }} </td>
         <td> {{ player.salary == 0 ? "N/A" : "$" + player.salary }} </td>
         <td> <button ng-disabled="1 == 0" ng-click="addPlayer(player)">+</button></td>
       </tr>
       <tr>
-        <td id="player-column" ng-show="pageSize == 20" ng-click="showMore()">Show more...</td>
-        <td ng-show="pageSize > 20" ng-click="showLess()">Show less...</td>
+        <td id="player-column" ng-show="pageSize == 18" ng-click="showMore()">Show more...</td>
+        <td id="player-column" ng-show="pageSize > 18" ng-click="showLess()">Show less...</td>
       </tr>
     </tbody>
   </table>
-  <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button>
-    {{ currentPage+1 }}/{{ numberOfPages() }}
-    <button ng-disabled="currentPage >= filterList.length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button>
+  <div class="page-scroll-outer">
+    <div class="page-scroll-inner">
+      <button id="previous" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button>
+        <div class="page-number">{{ currentPage+1 }}/{{ numberOfPages() }}</div>
+      <button id="next" ng-disabled="currentPage >= filterList.length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button>
+    </div>
+   </div>
   </div>
   <div class="current-div">
     <table ng-show="currentPlayer">
@@ -83,64 +90,87 @@
 <div class="lineup-div" ng-controller="lineupController">
   <table class="lineup-table">
     <thead>
-      <tr>
-        <th>Position</th>
-        <th>Player</th>
-        <th>Salary</th>
+      <div id="lineup-header">Lineup
+      </div>
+      <tr id="header-row">
+        <td>Position</td>
+        <td id="player-column">Player</td>
+        <td>OPP</td>
+        <td>FPPG</td>
+        <td>Salary</td>
+        <td>remove</td>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>QB</td>
-        <td> {{ qblist[0].name }}</td>
+        <td id="player-column"> {{ qblist[0].name }}</td>
+        <td> {{ qblist[0].opp }}</td>
+        <td> {{ qblist[0].fppg }}</td>
         <td> {{ qblist[0].salary }}</td>
         <td><button ng-click="removeFromLineup(qblist[0], false)" ng-show="qblist.length != 0">-</button></td>
       </tr>
       <tr>
         <td>RB</td>
-        <td> {{ rblist[0].name }}</td>
+        <td id="player-column"> {{ rblist[0].name }}</td>
+        <td> {{ rblist[0].opp }}</td>
+        <td> {{ rblist[0].fppg }}</td>
         <td> {{ rblist[0].salary }}</td>
         <td><button ng-click="removeFromLineup(rblist[0], false)" ng-show="rblist.length != 0">-</button></td>
       </tr>
       <tr>
         <td>RB</td>
-        <td> {{ rblist[1].name }}</td>
+        <td id="player-column"> {{ rblist[1].name }}</td>
+        <td> {{ rblist[1].opp }}</td>
+        <td> {{ rblist[1].fppg }}</td>
         <td> {{ rblist[1].salary }}</td>
         <td><button ng-click="removeFromLineup(rblist[1], false)" ng-show="rblist.length > 1">-</button></td>
       </tr>
       <tr>
         <td>WR</td>
-        <td> {{ wrlist[0].name }}</td>
+        <td id="player-column"> {{ wrlist[0].name }}</td>
+        <td> {{ wblist[0].opp }}</td>
+        <td> {{ wblist[0].fppg }}</td>
         <td> {{ wrlist[0].salary }}</td>
         <td><button ng-click="removeFromLineup(wrlist[0], false)" ng-show="wrlist.length != 0">-</button></td>
       </tr>
       <tr>
         <td>WR</td>
-        <td> {{ wrlist[1].name }}</td>
+        <td id="player-column"> {{ wrlist[1].name }}</td>
+        <td> {{ wblist[1].opp }}</td>
+        <td> {{ wblist[1].fppg }}</td>
         <td> {{ wrlist[1].salary }}</td>
         <td><button ng-click="removeFromLineup(wrlist[1], false)" ng-show="wrlist.length > 1">-</button></td>
       </tr>
       <tr>
         <td>WR</td>
-        <td> {{ wrlist[2].name }}</td>
+        <td id="player-column"> {{ wrlist[2].name }}</td>
+        <td> {{ wblist[2].opp }}</td>
+        <td> {{ wblist[2].fppg }}</td>
         <td> {{ wrlist[2].salary }}</td>
         <td><button ng-click="removeFromLineup(wrlist[2], false)" ng-show="wrlist.length > 2">-</button></td>
       </tr>
       <tr>
         <td>TE</td>
-        <td> {{ telist[0].name }}</td>
+        <td id="player-column"> {{ telist[0].name }}</td>
+        <td> {{ telist[0].opp }}</td>
+        <td> {{ telist[0].fppg }}</td>
         <td> {{ telist[0].salary }}</td>
         <td><button ng-click="removeFromLineup(telist[0], false)" ng-show="telist.length != 0">-</button></td>
       </tr>
       <tr>
         <td>DEF</td>
-        <td> {{ deflist[0].name }}</td>
+        <td id="player-column"> {{ deflist[0].name }}</td>
+        <td> {{ telist[0].opp }}</td>
+        <td> {{ telist[0].fppg }}</td>
         <td> {{ deflist[0].salary }}</td>
         <td><button ng-click="removeFromLineup(deflist[0], false)" ng-show="deflist.length != 0">-</button></td>
       </tr>
       <tr>
         <td>FLEX</td>
-        <td> {{ flexlist[0].name }}</td>
+        <td id="player-column"> {{ flexlist[0].name }}</td>
+        <td> {{ flexlist[0].opp }}</td>
+        <td> {{ flexlist[0].fppg }}</td>
         <td> {{ flexlist[0].salary }}</td>
         <td><button ng-click="removeFromLineup(flexlist[0], true)" ng-show="flexlist.length != 0">-</button></td>
       </tr>
