@@ -29,6 +29,10 @@
   padding: 0;
 }
 
+.container {
+  width: 1800px;
+}
+
 .main-body {
   background-color: #383739;
 }
