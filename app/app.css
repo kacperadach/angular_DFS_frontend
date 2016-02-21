@@ -38,7 +38,7 @@
 }
 
 .title {
-  width: 100%;
+  width: 70%;
   padding: 10px;
   display: inline-block;
   text-align: center;
@@ -47,6 +47,8 @@
   border-color: rgb(169, 169, 169);
   background-color: #1D1C1E;
   color: white;
+  position: relative;
+  left: 15%;
 }
 
 .search-bar {
@@ -54,7 +56,7 @@
 
 .table-div {
   float: left;
-  padding-right: 3%;
+  padding-right: 2%;
   padding-left: 15%;
   padding-top: 1%;
 }
@@ -202,6 +204,8 @@
 
 .current-table {
   border-collapse: collapse;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .current-table tr {
