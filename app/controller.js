@@ -15,14 +15,14 @@ app.controller('playersController', function($scope, $rootScope, $log, playersco
 		$scope.currentPlayer = player;
 		$scope.weekPerformances = player.WeekPerformances;
 		var label = [];
-		for(var x = 0; x < $scope.WeekPerformances.length; x++) {
+		for(var x = 0; x < $scope.weekPerformances.length; x++) {
 			label.push($scope.WeekPerformances[x].week);
 		}
 		$scope.labels = label;
   		$scope.series = [$scope.currentPlayer.name];
 
   		var label = [];
-		for(var x = 0; x < $scope.WeekPerformances.length; x++) {
+		for(var x = 0; x < $scope.weekPerformances.length; x++) {
 			label.push($scope.WeekPerformances[x].points);
 		}
   		$scope.data = label;
